@@ -1,0 +1,90 @@
+<html>
+<head>
+<title>PrimePrinter.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #999999; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(0,0,128); font-weight: bold; }
+.s1 { color: rgb(0,0,0); }
+.s2 { color: rgb(0,0,255); }
+.s3 { color: rgb(0,128,0); font-weight: bold; }
+</style>
+</head>
+<BODY BGCOLOR="#ffffff">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+PrimePrinter.java</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">package </span><span class="s1">literateProgramming; 
+ 
+</span><span class="s0">public class </span><span class="s1">PrimePrinter { 
+  </span><span class="s0">public static void </span><span class="s1">main(String[] args) { 
+    </span><span class="s0">final int </span><span class="s1">M = </span><span class="s2">1000</span><span class="s1">; 
+    </span><span class="s0">final int </span><span class="s1">RR = </span><span class="s2">50</span><span class="s1">; 
+    </span><span class="s0">final int </span><span class="s1">CC = </span><span class="s2">4</span><span class="s1">; 
+    </span><span class="s0">final int </span><span class="s1">ORDMAX = </span><span class="s2">30</span><span class="s1">; 
+    </span><span class="s0">int </span><span class="s1">P[] = </span><span class="s0">new int</span><span class="s1">[M+</span><span class="s2">1</span><span class="s1">]; 
+    </span><span class="s0">int </span><span class="s1">PAGENUMBER; 
+    </span><span class="s0">int </span><span class="s1">PAGEOFFSET; 
+    </span><span class="s0">int </span><span class="s1">ROWOFFSET; 
+    </span><span class="s0">int </span><span class="s1">C; 
+    </span><span class="s0">int </span><span class="s1">J; 
+    </span><span class="s0">int </span><span class="s1">K; 
+    </span><span class="s0">boolean </span><span class="s1">JPRIME; 
+    </span><span class="s0">int </span><span class="s1">ORD; 
+    </span><span class="s0">int </span><span class="s1">SQUARE; 
+    </span><span class="s0">int </span><span class="s1">N=</span><span class="s2">0</span><span class="s1">; 
+    </span><span class="s0">int </span><span class="s1">MULT[] = </span><span class="s0">new int</span><span class="s1">[ORDMAX+</span><span class="s2">1</span><span class="s1">]; 
+ 
+    J=</span><span class="s2">1</span><span class="s1">; 
+    K=</span><span class="s2">1</span><span class="s1">; 
+    P[</span><span class="s2">1</span><span class="s1">] = </span><span class="s2">2</span><span class="s1">; 
+    ORD = </span><span class="s2">2</span><span class="s1">; 
+    SQUARE = </span><span class="s2">9</span><span class="s1">; 
+ 
+    </span><span class="s0">while </span><span class="s1">(K &lt; M) { 
+      </span><span class="s0">do </span><span class="s1">{ 
+        J += </span><span class="s2">2</span><span class="s1">; 
+        </span><span class="s0">if </span><span class="s1">(J == SQUARE) { 
+          ORD++; 
+          SQUARE=P[ORD]*P[ORD]; 
+          MULT[ORD-</span><span class="s2">1</span><span class="s1">]=J; 
+        } 
+        N=</span><span class="s2">2</span><span class="s1">; 
+        JPRIME=</span><span class="s0">true</span><span class="s1">; 
+        </span><span class="s0">while </span><span class="s1">(N &lt; ORD &amp;&amp; JPRIME) { 
+          </span><span class="s0">while </span><span class="s1">(MULT[N]&lt;J) 
+            MULT[N] += P[N] + P[N]; 
+          </span><span class="s0">if </span><span class="s1">(MULT[N] == J) 
+            JPRIME=</span><span class="s0">false</span><span class="s1">; 
+          N++; 
+        } 
+      } </span><span class="s0">while </span><span class="s1">(!JPRIME); 
+      K++; 
+      P[K]=J; 
+    } 
+    PAGENUMBER = </span><span class="s2">1</span><span class="s1">; 
+    PAGEOFFSET = </span><span class="s2">1</span><span class="s1">; 
+    </span><span class="s0">while </span><span class="s1">(PAGEOFFSET &lt;= M) { 
+      System.out.print(</span><span class="s3">&quot;The First &quot;</span><span class="s1">); 
+      System.out.print(Integer.toString(M)); 
+      System.out.print(</span><span class="s3">&quot; Prime Numbers --- Page &quot;</span><span class="s1">); 
+      System.out.print(Integer.toString(PAGENUMBER)); 
+      System.out.println(</span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s1">); 
+      </span><span class="s0">for </span><span class="s1">(ROWOFFSET=PAGEOFFSET; ROWOFFSET &lt;= PAGEOFFSET+RR-</span><span class="s2">1</span><span class="s1">; ROWOFFSET++) { 
+        </span><span class="s0">for </span><span class="s1">(C=</span><span class="s2">0</span><span class="s1">; C &lt;= CC-</span><span class="s2">1</span><span class="s1">; C++) 
+          </span><span class="s0">if </span><span class="s1">(ROWOFFSET+C*RR &lt;= M) 
+            System.out.printf(</span><span class="s3">&quot;%10d&quot;</span><span class="s1">, P[ROWOFFSET+C*RR]); 
+        System.out.println(); 
+      } 
+      System.out.println(</span><span class="s3">&quot;</span><span class="s0">\f</span><span class="s3">&quot;</span><span class="s1">); 
+      PAGENUMBER++; 
+      PAGEOFFSET += RR*CC; 
+    } 
+  } 
+} 
+</span></pre>
+</body>
+</html>
